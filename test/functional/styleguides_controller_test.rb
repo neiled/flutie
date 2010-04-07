@@ -1,12 +1,7 @@
 require 'test_helper'
 
-class ApplicationController < ActionController::Base
-end
-
 ActionController::Base.prepend_view_path File.join(File.dirname(__FILE__), '..', '..', 'app', 'views')
 ActionController::Base.prepend_view_path File.join(File.dirname(__FILE__), '..', 'fixtures', 'app', 'views')
-require "flutie/styleguides_controller"
-require File.join(File.dirname(__FILE__), '..', '..', 'config', 'flutie_routes')
 
 class Flutie::StyleguidesControllerTest < ActionController::TestCase
   def self.should_render_well_formed_xml
@@ -29,7 +24,9 @@ class Flutie::StyleguidesControllerTest < ActionController::TestCase
 
     should_respond_with       :success
     should_render_template    :show
-    should_render_without_layout
+    should "not have a layout" do
+      assert_template :layout => nil, :partial => '_one', :count => 1
+    end
     should_render_well_formed_xml
     should_render_all_styleguide_partials
   end
@@ -39,7 +36,9 @@ class Flutie::StyleguidesControllerTest < ActionController::TestCase
 
     should_respond_with       :success
     should_render_template    :show
-    should_render_without_layout
+    should "not have a layout" do
+      assert_template :layout => nil, :partial => '_one', :count => 1
+    end
     should_render_well_formed_xml
     should_render_all_styleguide_partials
   end
@@ -49,7 +48,9 @@ class Flutie::StyleguidesControllerTest < ActionController::TestCase
 
     should_respond_with       :success
     should_render_template    :show
-    should_render_with_layout :flutie
+    should "have a layout of flutie" do
+      assert_template :layout => 'flutie', :partial => '_one', :count => 1
+    end
     should_render_well_formed_xml
     should_render_all_styleguide_partials
   end
