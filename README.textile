@@ -8,7 +8,9 @@ Flutie is a Rails engine. It works with versions of Rails greater than 2.3.
 
 Flutie is recommended to be run as a plugin so that the automatic installer is run.
 
-  $ ruby script/plugin install -f git@github.com:thoughtbot/flutie.git
+<pre>
+$ ruby script/plugin install -f git@github.com:thoughtbot/flutie.git -r rails2
+</pre>
 
 The installer will copy the Flutie stylesheets into public/flutie/stylesheets
 
@@ -20,7 +22,9 @@ h2. Usage
 
 Flutie registers a :flutie shortcut for stylesheets, so in your layout you can do...
 
-  <%= stylesheet_link_tag :flutie, 'admin', :cache => true %>
+<pre>
+<%= stylesheet_link_tag :flutie, 'admin', :cache => true %>
+</pre>
 
 ...this will include all the flutie stylesheets, then the 'admin' stylesheet, and it will cache them all into one file.
 
